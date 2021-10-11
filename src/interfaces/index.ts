@@ -45,3 +45,12 @@ export interface IPayload {
     secret_key?: string;
 }
 
+
+export interface IResult {
+    timestamp: number;
+    messages: {
+        valid: number;
+        invalid: number;
+    };
+}
+

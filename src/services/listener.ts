@@ -3,9 +3,10 @@ import { Container, Logger } from 'winston';
 import sha256 from 'sha256';
 import CryptoJS from 'crypto-js';
 
-import { IConfig } from '../interfaces';
+import { IConfig, IPayload, IResult } from '../interfaces';
 import CustomError from '../loaders/error';
 import { getCurTimestamp } from '../helpers/utils';
+import General from '../models';
 
 
 @Service()
@@ -13,16 +14,19 @@ export default class ListenerService {
 
     constructor(
         @Inject('config') private config: IConfig,
+        @Inject('general') private general: General,
         @Inject('logger') private logger: Logger
     ) {}
 
-    Validate(payload: string) {
+    async Validate(payload: string) {
 
         this.logger.debug(`Data integrity validation initiated`);
 
         const timestamp = getCurTimestamp();
         let validCount = 0;
         let invalidCount = 0;
+
+        const output: Array<IPayload> = [];
 
         const ENCDATA = payload.split('|').filter(item => item);
 
@@ -55,13 +59,14 @@ export default class ListenerService {
             } else {
                 this.logger.info(`Valid message: ${JSON.stringify(item)}`);
                 validCount += 1;
+                output.push(item);
             }
 
         }
 
-        const result = {
+        const result: IResult = {
             timestamp,
-            message: {
+            messages: {
                 valid: validCount,
                 invalid: invalidCount
             }
@@ -80,6 +85,13 @@ export default class ListenerService {
         }
 
         socket.emit('result', result);
+
+        this.logger.debug(`Updating data to DB`);
+
+        await this.general.pushPayload(output);
+        await this.general.pushResult(result);
+
+        this.logger.info(`Updated data to DB`);
 
         return result
 
