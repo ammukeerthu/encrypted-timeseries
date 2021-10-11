@@ -53,7 +53,7 @@ export default class ListenerService {
                 this.logger.error(`Corrupted message:  ${JSON.stringify(item)}`);
                 invalidCount += 1;
             } else {
-                this.logger.info(`Valid message: ${item}`);
+                this.logger.info(`Valid message: ${JSON.stringify(item)}`);
                 validCount += 1;
             }
 
