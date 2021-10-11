@@ -18,4 +18,6 @@ Access in bowser, http://<ip-address>:3001
 
   Database name: 'syook'
 
-  Collection name: 'messages'
+  Collection1 name: 'messages' (has all messages)
+
+  Collection2 name: 'result' (has all results)
