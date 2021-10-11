@@ -1,0 +1,12 @@
+# Dependency directories
+node_modules/
+
+# build files
+dist
+
+# others
+*.diff
+*.bak
+
+# log directories
+logs/
