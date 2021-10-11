@@ -19,10 +19,10 @@ async function startServer() {
     const httpserver = createServer(app);
 
     app.get(`/`, (_req: Request, res: Response) => {
-        res.sendFile(path.resolve('./src/index.html'));
+        res.sendFile(path.resolve('./src/templates/index.html'));
     });
 
-    const LISTENER = require('socket.io-client')('http://192.168.12.136:3001');
+    const LISTENER = require('socket.io-client')(`http://${config.host}:${config.port.listener}`);
     LISTENER.on('connect', () => {
         Container.set('listener', LISTENER);
         logger.debug('Listener object injected into container');
