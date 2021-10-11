@@ -1,5 +1,5 @@
-import { Service, Inject } from 'typedi';
-import { Container, Logger } from 'winston';
+import { Container, Service, Inject } from 'typedi';
+import { Logger } from 'winston';
 import sha256 from 'sha256';
 import CryptoJS from 'crypto-js';
 
