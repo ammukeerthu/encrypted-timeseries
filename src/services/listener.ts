@@ -80,8 +80,8 @@ export default class ListenerService {
         try {
             socket = Container.get('socket');
         } catch (err) {
-            this.logger.error('Socket connection is yet not opened');
-            throw new CustomError(200, 'Socket connection is yet not opened');
+            this.logger.error('Client connection is yet not opened');
+            throw new CustomError(200, 'Client connection is yet not opened');
         }
 
         socket.emit('result', result);
