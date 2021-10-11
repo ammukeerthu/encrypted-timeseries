@@ -26,7 +26,6 @@ async function startServer() {
         /* ... */
         allowEIO3: true,
         cors: {
-            // origin: `http://192.168.12.136`,
             origin: `http://${config.host}`,
             methods: ['GET'],
             credentials: true,
