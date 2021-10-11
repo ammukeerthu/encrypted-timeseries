@@ -14,7 +14,7 @@ export default class ListenerService {
 
     constructor(
         @Inject('config') private config: IConfig,
-        @Inject('general') private general: General,
+        @Inject('generalModel') private general: General,
         @Inject('logger') private logger: Logger
     ) {}
 
