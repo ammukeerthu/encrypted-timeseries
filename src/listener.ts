@@ -5,6 +5,7 @@ import 'reflect-metadata';
 import express from 'express';
 import { Request, Response } from 'express';
 import { Container } from 'typedi';
+import { Server } from 'socket.io';
 
 import config from './config';
 import logger from './loaders/logger';
@@ -18,12 +19,20 @@ async function startServer() {
     const httpserver = createServer(app);
 
     app.get(`/`, (_req: Request, res: Response) => {
-        res.sendFile(path.resolve('./src/index.html'));
+        res.sendFile(path.resolve('./src/templates/index.html'));
     });
 
-    const io = require('socket.io').listen(3001);
-
-    io.sockets.on('connection', (socket: any) => {
+    const io = new Server(httpserver, {
+        /* ... */
+        allowEIO3: true,
+        cors: {
+            // origin: `http://192.168.12.136`,
+            origin: `http://${config.host}`,
+            methods: ['GET'],
+            credentials: true,
+        }
+    });
+    io.on('connection', (socket: any) => {
 
         socket.emit('clienttest', 'Hello Client!');
 
