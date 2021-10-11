@@ -4,23 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>Encrypted Timeseries Data Validation</title>
   </head>
   <body>
-    <button onClick="test()">Test Connection</button>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
     <script>
       const socket = io("http://192.168.12.136:3001", {
 	      withCredentials: true,
 	    });
-      function test() {
-        socket.emit("clienttest", "Hello Listener!");
-      }
       socket.on("clienttest", function(message) {
         console.log(`test message from listener - ${message}`);
+        socket.emit("clienttest", "Hello Listener!");
       });
       socket.on("result", function(data) {
-        console.log(`Received result: ${data}`);
+        console.log(`Received result: ${JSON.stringify(data)}`);
         const payload = document.getElementById("payload");
         const item = document.createElement("li");
         item.textContent = JSON.stringify(data);
@@ -28,6 +25,6 @@
         window.scrollTo(0, document.body.scrollHeight);
       });
     </script>
-    <ul id="payload"></ul>
+    <ul id="payload"> Results </ul>
   </body>
 </html>
