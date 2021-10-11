@@ -1,0 +1,36 @@
+{
+  "name": "encrypted-timeseries",
+  "version": "1.0.0",
+  "description": "it's an application that has emitter-listener concept which has encrypted date to be sent over socket ",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "emitter": "ts-node src/emitter.ts",
+    "listener": "ts-node src/listener.ts"
+  },
+  "author": "keerthana",
+  "license": "ISC",
+  "dependencies": {
+    "@types/crypto-js": "^4.0.2",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.13",
+    "@types/jsonfile": "^6.0.1",
+    "@types/sha256": "^0.2.0",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonfile": "^6.1.0",
+    "mongodb": "^4.1.2",
+    "reflect-metadata": "^0.1.13",
+    "sha256": "^0.2.0",
+    "socket.io": "^4.2.0",
+    "socket.io-client": "^4.2.0",
+    "typedi": "^0.10.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.1.8",
+    "tslint": "^6.1.3",
+    "typescript": "^4.4.3"
+  }
+}
