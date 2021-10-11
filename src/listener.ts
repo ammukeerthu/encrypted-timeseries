@@ -33,6 +33,9 @@ async function startServer() {
     });
     io.on('connection', (socket: any) => {
 
+        Container.set('socket', socket);
+        logger.debug('Socket object injected into container');
+
         socket.emit('clienttest', 'Hello Client!');
 
         socket.on('clienttest', (message: string) => {
