@@ -41,6 +41,8 @@ Run `mongo` for viewing the database. Default database name is `syook`. And, the
 ┣📂loaders         # Split the startup process into modules
 ┣📂models          # Database models
 ┣📂services        # All the business logic is here
+┣📂templates       # UI Templates for the app
+┣📂dataset         # Dataset used by the app
 ```
 
 ### Note
