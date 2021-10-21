@@ -1,4 +1,4 @@
-# syook-assessment
+# encrypted-timeseries-assessment
 
 
 ## Development
